@@ -1,3 +1,5 @@
+import ticketsPage from "../Pages/Tickets/TicketsPage";
+
 describe ("Tickets", () => {
 
     beforeEach (() => cy.visit('https://ticket-box.s3.eu-central-1.amazonaws.com/index.html'));
@@ -41,18 +43,18 @@ describe ("Tickets", () => {
     });
 
 
-    it.only("TC03 - Compra de Ingresso Campos Obrigatórios", () => {
-        const user = {
-            firstName: 'Rafael',
-            lastName: 'Ramos',
-            email: 'teste@gmail.com'
-        }
+    it("Comprar Tickets com sucesso PO", () => {
+        cy.fixture("user.json").then((user) => {
+            ticketsPage.FirstName.type(user.firstName);
+            ticketsPage.LastName.type(user.lastName);
+            ticketsPage.Email.type(user.email);
+        })
         
-        cy.filMandatory(user);
+        ticketsPage.Agree.check();
 
-        cy.get("button[type='submit']").click();
-        cy.get('.success').should('be.visible');
-        cy.get('.success').should('have.text', 'Ticket(s) successfully ordered.');
+        ticketsPage.SubmitButton.click();
 
+        ticketsPage.Success.should('be.visible');
+        ticketsPage.Success.should('have.text', 'Ticket(s) successfully ordered.');
     });
 });
