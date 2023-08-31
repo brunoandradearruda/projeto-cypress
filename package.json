@@ -21,7 +21,7 @@
     "url": "https://github.com/faellima/cypress-pos-unipe/issues"
   },
   "homepage": "https://github.com/faellima/cypress-pos-unipe#readme",
-  "dependencies": {
-    "cypress": "^12.17.4"
+  "devDependencies": {
+    "cypress": "^13.0.0"
   }
 }

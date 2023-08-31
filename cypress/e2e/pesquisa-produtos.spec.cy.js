@@ -1,60 +1,30 @@
 import ticketsPage from "../Pages/Tickets/TicketsPage";
 
-describe ("Tickets", () => {
+describe ("PESQUISA E VISUALIZAÇÃO DE PRODUTOS", () => {
 
-    beforeEach (() => cy.visit('https://ticket-box.s3.eu-central-1.amazonaws.com/index.html'));
+    beforeEach (() => cy.visit('https://automationexercise.com/products'));
 
-    it("TC01 - Input First and Last Name", () => {
-        const firstName = 'Rafael';
-        const lastName = 'Ramos';
-        const fullName = `${firstName} ${lastName}`
 
-        cy.get('#first-name').type(firstName);
-        cy.get('#last-name').type(lastName);
-        cy.get('.agreement p').should('contain', `I, ${fullName}, wish to buy`);
+    it("Deve realizar uma pesquisa por um produto existente", () => {
+        const productToSearch = 'Tshirt';
 
+        cy.get('#search_product').type(productToSearch);
+        cy.get('#submit_search').click();
+
+        // Verificações/assertions para garantir que a pesquisa foi realizada corretamente
+        cy.url().should('include', '/products?query=' + productToSearch); // Verifica se a URL contém o termo de pesquisa
+
+        // Verifica se os resultados da pesquisa são exibidos corretamente
+        cy.get('.product-item').should('have.length.gt', 0); // Verifica se há resultados de pesquisa exibidos.
+        cy.contains('.product-title', productToSearch).should('be.visible'); // Verifica se o nome do produto pesquisado é exibido.
     });
 
-    it("TC02 - Compra de Ingresso Full", () => {
-        const firstName = 'Rafael';
-        const lastName = 'Ramos';
-        const email = 'teste@gmail.com'
-        const textFull = 'Text Text'+ 
-        'Text Text';
-        const fullName = `${firstName} ${lastName}`
+    it.only("Deve exibir mensagem de erro ao buscar por um produto inexistente", () => {
+        const nonexistentProduct = 'nonexistent';
 
-        cy.get('#first-name').type(firstName);
-        cy.get('#last-name').type(lastName);
-        cy.get('#email').type(email);
-        cy.get('#ticket-quantity').select("2");
-        cy.get('#vip').check();
-        cy.get('#publication').check();
-        cy.get('#requests').type(textFull, { delay: 0});
+        cy.get('#search_product').type(nonexistentProduct);
+        cy.get('#submit_search').click();
 
-        cy.get('.agreement p').should('contain', `I, ${fullName}, wish to buy`);
-
-        cy.get('#agree').check();
-        cy.get('#signature').type(fullName, { delay: 0});
-
-        cy.get("button[type='submit']").click();
-        cy.get('.success').should('be.visible');
-        cy.get('.success').should('have.text', 'Ticket(s) successfully ordered.');
-
-    });
-
-
-    it("Comprar Tickets com sucesso PO", () => {
-        cy.fixture("user.json").then((user) => {
-            ticketsPage.FirstName.type(user.firstName);
-            ticketsPage.LastName.type(user.lastName);
-            ticketsPage.Email.type(user.email);
-        })
-        
-        ticketsPage.Agree.check();
-
-        ticketsPage.SubmitButton.click();
-
-        ticketsPage.Success.should('be.visible');
-        ticketsPage.Success.should('have.text', 'Ticket(s) successfully ordered.');
+    
     });
 });

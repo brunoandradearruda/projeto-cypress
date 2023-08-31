@@ -1,13 +1,13 @@
 import ticketsPage from "../Pages/Tickets/TicketsPage";
 
-describe ("Cadastro e Login", () => {
+describe ("REGISTRO DE USUÁRIO", () => {
 
     beforeEach (() => cy.visit('https://automationexercise.com/signup'));
 
     it.only("TC01 - Registro de Usuário", () => {
 
         const signupName = 'bruno';
-        const email = 'brunoarruda3@gmail.com.br';
+        const email = 'brunoarruda6@gmail.com.br';
         cy.get("[data-qa='signup-name']").type(signupName);
         cy.get("[data-qa='signup-email']").type(email);
         cy.get('[data-qa="signup-button"]').click();
