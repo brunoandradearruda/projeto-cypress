@@ -4,7 +4,7 @@ describe ("REGISTRO DE USUÁRIO", () => {
 
     beforeEach (() => cy.visit('https://automationexercise.com/signup'));
 
-    it.only("TC01 - Registro de Usuário", () => {
+    it("TC01 - Registro de Usuário", () => {
 
         const signupName = 'bruno';
         const email = 'brunoarruda7777@gmail.com.br';
@@ -40,55 +40,19 @@ describe ("REGISTRO DE USUÁRIO", () => {
 
     });
 
-    // it("TC02 - Cadastro de usuário", () => {
-
-        
-    //     const name = 'bruno';
-    //     const email = 'brunoarruda@gmail.com';
-    //     const password = "12345";
-    //     const FirstName = "bruno";
-    //     const LastName = "arruda";
-    //     const address = "wall street";
-    //     const state = 'NY'
-    //     const city = "New York"
-    //     const zipCode = '86556'
-    //     const mobileNumber = '839888855555';
-
-    //     cy.get('name').type(name);
-    //     cy.get('email').type(email);
-    //     cy.get('password').type(password);
-    //     cy.get('country').select('United States')
-
-        
-    //     cy.get('#ticket-quantity').select("2");
-    //     cy.get('#first-name').type(firstName);
-    //     cy.get('#last-name').type(lastName);
-    //     cy.get('#email').type(email);
-    //     cy.get('#vip').check();
-    //     cy.get('#publication').check();
-    //     cy.get('#requests').type(textFull, { delay: 0});
-    //     cy.get('.agreement p').should('contain', `I, ${fullName}, wish to buy`);
-    //     cy.get('#agree').check();
-    //     cy.get('#signature').type(fullName, { delay: 0});
-    //     cy.get("button[type='submit']").click();
-    //     cy.get('.success').should('be.visible');
-    //     cy.get('.success').should('have.text', 'Ticket(s) successfully ordered.');
-
-    // });
 
 
-    // it("Comprar Tickets com sucesso PO", () => {
-    //     cy.fixture("user.json").then((user) => {
-    //         ticketsPage.FirstName.type(user.firstName);
-    //         ticketsPage.LastName.type(user.lastName);
-    //         ticketsPage.Email.type(user.email);
-    //     })
-        
-    //     ticketsPage.Agree.check();
+    it.only("TC02 - Login", () => {
 
-    //     ticketsPage.SubmitButton.click();
+   
+    const email = 'brunoarruda7777@gmail.com.br';
+    const password = '123456';
 
-    //     ticketsPage.Success.should('be.visible');
-    //     ticketsPage.Success.should('have.text', 'Ticket(s) successfully ordered.');
-    // });
+    cy.get('[data-qa="login-email"]').type(email);
+    cy.get('[data-qa="login-password"]').type(password);
+    cy.get('[data-qa="login-button"]').click();
+
+
+
+    });
 });
