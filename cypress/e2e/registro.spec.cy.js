@@ -7,7 +7,7 @@ describe ("REGISTRO DE USUÁRIO", () => {
     it.only("TC01 - Registro de Usuário", () => {
 
         const signupName = 'bruno';
-        const email = 'brunoarruda6@gmail.com.br';
+        const email = 'brunoarruda7777@gmail.com.br';
         cy.get("[data-qa='signup-name']").type(signupName);
         cy.get("[data-qa='signup-email']").type(email);
         cy.get('[data-qa="signup-button"]').click();

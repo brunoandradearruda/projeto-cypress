@@ -5,7 +5,7 @@ describe ("PESQUISA E VISUALIZAÇÃO DE PRODUTOS", () => {
     beforeEach (() => cy.visit('https://automationexercise.com/products'));
 
 
-    it("Deve realizar uma pesquisa por um produto existente", () => {
+    it.only("Deve realizar uma pesquisa por um produto existente", () => {
         const productToSearch = 'Tshirt';
 
         cy.get('#search_product').type(productToSearch);
@@ -19,7 +19,7 @@ describe ("PESQUISA E VISUALIZAÇÃO DE PRODUTOS", () => {
         cy.contains('.product-title', productToSearch).should('be.visible'); // Verifica se o nome do produto pesquisado é exibido.
     });
 
-    it.only("Deve exibir mensagem de erro ao buscar por um produto inexistente", () => {
+    it("Deve exibir mensagem de erro ao buscar por um produto inexistente", () => {
         const nonexistentProduct = 'nonexistent';
 
         cy.get('#search_product').type(nonexistentProduct);
