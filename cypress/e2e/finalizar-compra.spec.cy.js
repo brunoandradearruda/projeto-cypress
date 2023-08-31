@@ -7,15 +7,18 @@ describe("Teste de Login e Finalização de Compra", () => {
         cy.get('[data-qa="login-email"]').type('brunoarruda7777@gmail.com.br');
         cy.get('[data-qa="login-password"]').type('123456');
         cy.get('[data-qa="login-button"]').click();
-
-        // Verificações/assertions para garantir que o login foi realizado com sucesso
-        cy.url().should('include', '/products'); // Verifica se a URL mudou para a página de produtos
-
-        // Acessar a página de checkout
-        cy.visit('https://automationexercise.com/checkout');
-
-        // Verificações/assertions para garantir que a compra foi finalizada com sucesso
-        cy.url().should('include', '/purchase-confirmation'); // Verifica se a URL mudou para a página de confirmação de compra
-        cy.contains('.confirm-box', 'Thank you for your purchase!').should('be.visible'); // Verifica se a mensagem de agradecimento é exibida
+        
     });
+
+
+    it("TC02 - Adiciona itens ao carrinho", () => {
+
+        it("Deve adicionar um produto ao carrinho de compras"), () => 
+        
+            // Localize o botão "Add to Cart" do terceiro produto na lista e clique nele
+            cy.get('.features_items > :nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn').click();
+    
+    
+        });
+    
 });

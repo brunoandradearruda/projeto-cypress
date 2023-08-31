@@ -4,10 +4,10 @@ describe ("REGISTRO DE USUÁRIO", () => {
 
     beforeEach (() => cy.visit('https://automationexercise.com/signup'));
 
-    it("TC01 - Registro de Usuário", () => {
+    it.only("TC01 - Registro de Usuário", () => {
 
         const signupName = 'bruno';
-        const email = 'brunoarruda7777@gmail.com.br';
+        const email = 'brunoarruda'+Math.floor(Math.random() * 80)+'@gmail.com.br';
         cy.get("[data-qa='signup-name']").type(signupName);
         cy.get("[data-qa='signup-email']").type(email);
         cy.get('[data-qa="signup-button"]').click();
@@ -42,15 +42,17 @@ describe ("REGISTRO DE USUÁRIO", () => {
 
 
 
-    it.only("TC02 - Login", () => {
+    it("TC02 - Login", () => {
 
    
-    const email = 'brunoarruda7777@gmail.com.br';
+    const email = 'brunoarruda7778@gmail.com.br';
     const password = '123456';
 
     cy.get('[data-qa="login-email"]').type(email);
     cy.get('[data-qa="login-password"]').type(password);
     cy.get('[data-qa="login-button"]').click();
+
+
 
 
 
